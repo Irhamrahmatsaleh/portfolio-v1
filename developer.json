@@ -121,7 +121,7 @@
       "description": "A collection of modern UI animation examples built with Flutter.",
       "img": "/images/projects/ui-animations2.png",
       "tech": [
-        "Flutter"
+        "flutter"
       ],
       "url": "https://github.com/"
     },
@@ -130,7 +130,7 @@
       "description": "A curated platform featuring resources and tools for AI development.",
       "img": "/images/projects/ai-resources.png",
       "tech": [
-        "Gatsby"
+        "gatsby"
       ],
       "url": "https://github.com/"
     },
@@ -139,7 +139,7 @@
       "description": "An interactive world map visualization built using Angular.",
       "img": "/images/projects/worldmap.png",
       "tech": [
-        "Angular"
+        "angular"
       ],
       "url": "https://github.com/"
     },
@@ -148,7 +148,7 @@
       "description": "A React-based project showcasing advanced UI animations and effects for engaging web applications.",
       "img": "/images/projects/ui-animations.png",
       "tech": [
-        "React"
+        "react"
       ],
       "url": "https://github.com/"
     },
@@ -157,7 +157,7 @@
       "description": "A classic Tetris game recreated in React, featuring responsive controls and a clean.",
       "img": "/images/projects/tetris-game.png",
       "tech": [
-        "React"
+        "react"
       ],
       "url": "https://github.com/"
     },
@@ -166,7 +166,7 @@
       "description": "A Vue-based dashboard for monitoring Ethereum blockchain data, including transactions and wallet.",
       "img": "/images/projects/ethereum.png",
       "tech": [
-        "Vue"
+        "vue"
       ],
       "url": "https://github.com/"
     }
