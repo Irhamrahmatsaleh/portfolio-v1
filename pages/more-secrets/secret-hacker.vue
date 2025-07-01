@@ -6,7 +6,7 @@
     <header class="w-full max-w-5xl flex items-center justify-between mb-4 border-b border-green-700 pb-2"
       aria-label="Header Hacker Terminal">
       <h1
-        class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-green-400 tracking-widest uppercase select-none drop-shadow"
+        class="text-1xl sm:text-1xl md:text-4xl font-extrabold text-green-400 tracking-widest uppercase select-none drop-shadow"
         aria-label="Super Killer Hacker Title">
         _secret_hacker
       </h1>
@@ -53,7 +53,7 @@
             <li><a href="#" class="hover:underline">Support</a></li>
             <li>
               <span class="note-red">
-                * Terminal ini hanya fake, tidak diperkenankan melakukan kejahatan dalam bentuk apapun.
+                * Terminal ini hanya simulasi untuk edukasi.
               </span>
             </li>
 
