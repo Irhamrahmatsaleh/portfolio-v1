@@ -6,7 +6,7 @@
     <header class="w-full max-w-5xl flex items-center justify-between mb-4 border-b border-green-700 pb-2"
       aria-label="Header Hacker Terminal">
       <h1
-        class="text-1xl sm:text-1xl md:text-4xl font-extrabold text-green-400 tracking-widest uppercase select-none drop-shadow"
+        class="text-1xl sm:text-1xl md:text-3xl font-extrabold text-green-400 tracking-widest uppercase select-none drop-shadow"
         aria-label="Super Killer Hacker Title">
         _secret_hacker
       </h1>

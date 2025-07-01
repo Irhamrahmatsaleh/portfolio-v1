@@ -13,7 +13,7 @@
         <span class="blinking-cursor">_</span>
       </div>
       <div class="text-yellow-300 font-mono text-xs mt-1 mb-3 px-2 animate-pulse">
-        Search engine prompt: <b><i>sudo google keyword</i></b>
+        Example Command: <b><i>sudo apt update</i></b>
       </div>
       <div class="text-yellow-300 font-mono text-xs mt-1 mb-3 px-2 animate-pulse">
         💡 Terminal Linux Tips:
@@ -35,7 +35,7 @@ import { ref, reactive, computed, nextTick, onMounted } from 'vue'
 import { parseCommand } from '@/utils/FakeCommandEngine.js'
 
 
-const prompt = 'root@superHacker:~#'
+const prompt = 'root@secret:~#'
 const currentInput = ref('')
 const history = ref([])
 const historyIdx = ref(-1)
