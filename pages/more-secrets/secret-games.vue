@@ -19,6 +19,6 @@
 </template> -->
 
 <template>
-  <iframe style="width: 100%; height: 550px; overflow: hidden; border: none;" src="https://ludoking.com/play/"
-    title="ludoking" scrolling="no"></iframe>
+  <iframe style="width: 100%; height: 550px; overflow: hidden; border: none;" src="https://gamesnacks.com/"
+    title="gamesnacks" scrolling="no"></iframe>
 </template>
