@@ -18,7 +18,16 @@
     src="https://playpager.com/embed/cubes/index.html" title="Cubes Game" scrolling="no"></iframe>
 </template> -->
 
+
+
+
+
+
+
+
+
+
 <template>
   <iframe style="width: 100%; height: 550px; overflow: hidden; border: none;" src="https://gamesnacks.com/"
-    title="gamesnacks" scrolling="no"></iframe>
+    title="gamesnacks" scrolling="yes"></iframe>
 </template>
