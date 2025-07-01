@@ -67,7 +67,7 @@
       class="w-full max-w-5xl mt-8 flex flex-col items-center text-green-500 text-xs border-t border-green-800 pt-2"
       aria-label="Footer Hacker Terminal">
       <span>Super Hacker Terminal &copy; 2025 | All rights reserved.</span>
-      <span class="mt-1">Made with <span class="animate-pulse">💚</span> for world domination.</span>
+      <!-- <span class="mt-1">Made with <span class="animate-pulse">💚</span> for world domination.</span> -->
     </footer>
   </section>
 

@@ -1,61 +1,69 @@
 <template>
-  <div class="editor-file-tree-wrapper" :class="{ collapsed: collapsed }">
+  <div class="editor-file-tree-wrapper" :class="{ collapsed }">
     <button class="sidebar-toggle" @click="collapsed = !collapsed">
       <span v-if="collapsed">›</span>
       <span v-else>‹</span>
     </button>
     <div class="editor-file-tree" v-if="!collapsed">
-      <div v-for="file in files" :key="file.name" :class="['file-item', { active: file.name === activeFile }]"
-        @click="selectFile(file.name)">
-        <span class="file-icon">📄</span>
-        <span v-if="renaming !== file.name" class="file-name" @dblclick="startRenaming(file.name)">
-          {{ file.name }}
-        </span>
-        <input v-else class="file-rename-input" v-model="renameValue" @keyup.enter="confirmRename(file.name)"
-          @blur="confirmRename(file.name)" @keyup.esc="cancelRename" autofocus />
-        <span class="file-delete" @click.stop="removeFile(file.name)" title="Delete">×</span>
+      <FileTreeNode v-for="item in files" :key="item.name" :node="item" :activeFile="activeFile"
+        @selectFile="selectFile" @addFile="addFile" @addFolder="addFolder" @removeFile="removeFile"
+        @renameFile="renameFile" @renameFolder="renameFolder" @moveNode="moveNode" />
+      <div class="tree-actions">
+        <button class="file-add" @click="addFile(null)">＋ File</button>
+        <button class="file-add" @click="addFolder(null)">＋ Folder</button>
       </div>
-      <button class="file-add" @click="addFile">＋ Add File</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import FileTreeNode from './FileTreeNode.vue'
+
+interface FileOrFolder {
+  name: string
+  type: 'file' | 'folder'
+  content?: string
+  children?: FileOrFolder[]
+}
+
 const props = defineProps<{
-  files: Array<{ name: string }>,
+  files: Array<FileOrFolder>,
   activeFile: string
 }>()
-const emit = defineEmits(['selectFile', 'addFile', 'removeFile', 'renameFile'])
+
+const emit = defineEmits([
+  'selectFile',
+  'addFile',
+  'addFolder',
+  'removeFile',
+  'renameFile',
+  'renameFolder',
+  'moveNode'
+])
+
 const collapsed = ref(false)
-const renaming = ref<string | null>(null)
-const renameValue = ref('')
 
 function selectFile(name: string) {
   emit('selectFile', name)
 }
-
-function addFile() {
-  emit('addFile')
+function addFile(parent: FileOrFolder | null) {
+  emit('addFile', parent)
 }
-function removeFile(name: string) {
-  emit('removeFile', name)
+function addFolder(parent: FileOrFolder | null) {
+  emit('addFolder', parent)
 }
-
-function startRenaming(name: string) {
-  renaming.value = name
-  renameValue.value = name
+function removeFile(node: FileOrFolder) {
+  emit('removeFile', node)
 }
-function confirmRename(oldName: string) {
-  if (!renameValue.value.trim() || renameValue.value === oldName) {
-    renaming.value = null
-    return
-  }
-  emit('renameFile', { oldName, newName: renameValue.value.trim() })
-  renaming.value = null
+function renameFile(payload: { node: FileOrFolder, newName: string }) {
+  emit('renameFile', payload)
 }
-function cancelRename() {
-  renaming.value = null
+function renameFolder(payload: { node: FileOrFolder, newName: string }) {
+  emit('renameFolder', payload)
+}
+function moveNode(payload: { from: FileOrFolder, to: FileOrFolder | null }) {
+  emit('moveNode', payload)
 }
 </script>
 
@@ -63,16 +71,31 @@ function cancelRename() {
 .editor-file-tree-wrapper {
   display: flex;
   flex-direction: column;
-  width: 180px;
-  min-width: 48px;
-  background: #222d3a;
-  position: relative;
-  transition: width 0.2s;
+  width: 210px;
+  min-width: 160px;
+  max-width: 240px;
+  background: #182235;
+  border-right: 2px solid #162140;
+  box-shadow: 2px 0 12px #000b1a12;
+  z-index: 2;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.editor-file-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 6px 0 8px 0;
 }
 
 .editor-file-tree-wrapper.collapsed {
-  width: 32px;
-  min-width: 32px;
+  width: 34px;
+  min-width: 34px;
 }
 
 .sidebar-toggle {
@@ -81,96 +104,45 @@ function cancelRename() {
   color: #8dc6ff;
   font-size: 18px;
   cursor: pointer;
-  margin: 8px 2px 8px 2px;
+  margin: 7px 2px 5px 2px;
   align-self: flex-end;
   outline: none;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 12px;
   transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-toggle:hover {
   background: #334b6b;
 }
 
-.editor-file-tree {
-  flex: 1;
-  padding: 8px 0;
+
+.tree-actions {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.file-item {
-  padding: 4px 8px 4px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  justify-content: space-between;
-  background: linear-gradient(90deg, #1e2a3a, #283c5e 100%);
-  color: #a4e1fa;
-  transition: background 0.16s, color 0.13s, box-shadow 0.12s;
-  margin: 2px 5px;
-}
-
-.file-item.active {
-  background: linear-gradient(90deg, #3752a6 65%, #34d9ff 100%);
-  color: #fff;
-  font-weight: 0 0 7px #34d9ff55;
-}
-
-.file-item:hover:not(.active) {
-  background: linear-gradient(90deg, #24446c 65%, #39c3ef 100%);
-  color: #fff;
-}
-
-.file-icon {
-  font-size: 13px;
-}
-
-.file-delete {
-  color: #ff6464;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 6px;
-  border-radius: 3px;
-  padding: 0 4px;
-  transition: background 0.13s;
-}
-
-.file-delete:hover {
-  background: #242d3a;
+  gap: 8px;
+  padding: 7px 10px 3px 10px;
+  justify-content: flex-end;
 }
 
 .file-add {
-  background: #192b45;
+  background: #253a5a;
   border: none;
   color: #8dc6ff;
   font-size: 12px;
   font-weight: 600;
-  margin: 8px 10px 0 10px;
   border-radius: 4px;
-  padding: 4px 0;
+  padding: 3px 12px;
   cursor: pointer;
   transition: background 0.14s;
+  letter-spacing: 0.03em;
 }
 
 .file-add:hover {
   background: #334b6b;
-}
-
-.file-rename-input {
-  background: #10395e;
   color: #fff;
-  border: 1px solid #44e1ff;
-  border-radius: 4px;
-  font-size: 13px;
-  padding: 2px 7px;
-  outline: none;
-  width: 110px;
 }
 </style>
