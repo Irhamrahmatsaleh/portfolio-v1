@@ -16,8 +16,10 @@
     "@highlightjs/vue-plugin": "highlightjs/vue-plugin",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "aos": "^2.3.4",
+    "axios": "^1.10.0",
     "highlight.js": "^11.7.0",
-    "monaco-editor": "^0.52.2"
+    "monaco-editor": "^0.52.2",
+    "vue3-markdown-it": "^1.0.10"
   },
   "version": "1.0.0"
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient Circle -->
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe7a7" />
+      <stop offset="100%" stop-color="#232343" />
+    </radialGradient>
+    <linearGradient id="faceGrad" x1="100" y1="50" x2="220" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f9f6fd" />
+      <stop offset="1" stop-color="#c9c0ff" />
+    </linearGradient>
+    <linearGradient id="neckGrad" x1="140" y1="265" x2="180" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c7b7fa" />
+      <stop offset="1" stop-color="#9ea4e6" />
+    </linearGradient>
+    <linearGradient id="visorGrad" x1="90" y1="130" x2="230" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f5fafd" />
+      <stop offset="1" stop-color="#b7e6f7" />
+    </linearGradient>
+    <linearGradient id="accent1" x1="60" y1="60" x2="260" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffe7a7" />
+      <stop offset="1" stop-color="#ffd6e0" />
+    </linearGradient>
+    <linearGradient id="accent2" x1="70" y1="210" x2="250" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b7e6f7" />
+      <stop offset="1" stop-color="#e3ffe7" />
+    </linearGradient>
+    <radialGradient id="shine" cx="60%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <!-- Outer Glow -->
+  <circle cx="160" cy="160" r="148" fill="url(#bgGrad)" opacity="0.86" />
+  <!-- Head/Face -->
+  <ellipse cx="160" cy="148" rx="85" ry="98" fill="url(#faceGrad)" />
+  <!-- Neck -->
+  <rect x="120" y="230" width="80" height="48" rx="24" fill="url(#neckGrad)" />
+  <!-- Visor (AI Eye Band) -->
+  <ellipse cx="160" cy="160" rx="70" ry="32" fill="url(#visorGrad)" opacity="0.85" />
+  <!-- Left Eye -->
+  <ellipse cx="130" cy="160" rx="11" ry="14" fill="#282857">
+    <animate attributeName="ry" values="14;10;14" dur="2s" repeatCount="indefinite" />
+  </ellipse>
+  <ellipse cx="130" cy="160" rx="5" ry="6" fill="#fff" opacity="0.7" />
+  <!-- Right Eye -->
+  <ellipse cx="190" cy="160" rx="11" ry="14" fill="#282857">
+    <animate attributeName="ry" values="14;10;14" dur="2s" begin="0.5s" repeatCount="indefinite" />
+  </ellipse>
+  <ellipse cx="190" cy="160" rx="5" ry="6" fill="#fff" opacity="0.7" />
+  <!-- Mouth: Subtle Smile -->
+  <path d="M140 190 Q160 205 180 190" stroke="#b7e6f7" stroke-width="4" stroke-linecap="round"
+    fill="none" />
+  <!-- Cheek Blush Left -->
+  <ellipse cx="115" cy="180" rx="12" ry="5" fill="#ffd6e0" opacity="0.6" />
+  <!-- Cheek Blush Right -->
+  <ellipse cx="205" cy="180" rx="12" ry="5" fill="#ffd6e0" opacity="0.6" />
+  <!-- Forehead Glow -->
+  <ellipse cx="160" cy="110" rx="32" ry="12" fill="url(#shine)" opacity="0.4" />
+  <!-- Forehead Accent -->
+  <ellipse cx="160" cy="90" rx="18" ry="6" fill="url(#accent1)" opacity="0.5" />
+  <!-- Side Accent Left -->
+  <ellipse cx="75" cy="140" rx="15" ry="50" fill="url(#accent2)" transform="rotate(-15 75 140)"
+    opacity="0.22" />
+  <!-- Side Accent Right -->
+  <ellipse cx="245" cy="140" rx="15" ry="50" fill="url(#accent2)" transform="rotate(15 245 140)"
+    opacity="0.22" />
+  <!-- Chin Highlight -->
+  <ellipse cx="160" cy="215" rx="30" ry="10" fill="#fff" opacity="0.09" />
+  <!-- Lower Face Shadow -->
+  <ellipse cx="160" cy="205" rx="50" ry="16" fill="#232343" opacity="0.12" />
+  <!-- Headset Left -->
+  <ellipse cx="68" cy="148" rx="18" ry="44" fill="#e3ffe7" opacity="0.13" />
+  <ellipse cx="68" cy="148" rx="12" ry="36" fill="#b7e6f7" opacity="0.13" />
+  <!-- Headset Right -->
+  <ellipse cx="252" cy="148" rx="18" ry="44" fill="#e3ffe7" opacity="0.13" />
+  <ellipse cx="252" cy="148" rx="12" ry="36" fill="#b7e6f7" opacity="0.13" />
+  <!-- Headset Band -->
+  <path d="M90 70 Q160 30 230 70" stroke="#b7e6f7" stroke-width="10" fill="none" opacity="0.21" />
+  <!-- Sparkle Accents -->
+  <g opacity="0.45">
+    <circle cx="60" cy="60" r="3" fill="#fff" />
+    <rect x="250" y="80" width="6" height="6" rx="3" fill="#fff" />
+    <ellipse cx="120" cy="35" rx="3" ry="1.5" fill="#fff" />
+    <ellipse cx="210" cy="50" rx="2.5" ry="1.5" fill="#fff" />
+    <circle cx="280" cy="110" r="2.5" fill="#ffe7a7" />
+    <rect x="35" y="110" width="4" height="4" rx="2" fill="#ffe7a7" />
+    <circle cx="80" cy="270" r="2.5" fill="#ffe7a7" />
+    <circle cx="240" cy="270" r="2.5" fill="#ffe7a7" />
+    <ellipse cx="160" cy="290" rx="2" ry="1.2" fill="#ffe7a7" />
+  </g>
+  <!-- Face Techlines -->
+  <g stroke="#b7e6f7" stroke-width="2" opacity="0.2">
+    <path d="M110 140 Q120 120 140 130" />
+    <path d="M210 140 Q200 120 180 130" />
+    <path d="M130 190 Q145 200 160 195" />
+    <path d="M190 190 Q175 200 160 195" />
+    <path d="M140 100 Q160 90 180 100" />
+  </g>
+  <!-- Lower Face Panel -->
+  <path d="M110 200 Q160 240 210 200 Q200 235 160 235 Q120 235 110 200Z" fill="#c9c0ff"
+    opacity="0.13" />
+  <!-- Panel Glow -->
+  <ellipse cx="160" cy="230" rx="40" ry="10" fill="url(#shine)" opacity="0.18" />
+  <!-- Small Dots & Details -->
+  <g>
+    <circle cx="120" cy="110" r="1.6" fill="#b7e6f7" opacity="0.58" />
+    <circle cx="200" cy="116" r="1.7" fill="#b7e6f7" opacity="0.45" />
+    <circle cx="145" cy="124" r="1.2" fill="#b7e6f7" opacity="0.38" />
+    <circle cx="175" cy="120" r="1.2" fill="#b7e6f7" opacity="0.38" />
+    <circle cx="160" cy="132" r="1.3" fill="#b7e6f7" opacity="0.36" />
+    <circle cx="132" cy="175" r="1.1" fill="#b7e6f7" opacity="0.38" />
+    <circle cx="188" cy="175" r="1.1" fill="#b7e6f7" opacity="0.38" />
+    <circle cx="160" cy="175" r="1.1" fill="#b7e6f7" opacity="0.29" />
+    <ellipse cx="145" cy="170" rx="2" ry="0.7" fill="#fff" opacity="0.11" />
+    <ellipse cx="175" cy="170" rx="2" ry="0.7" fill="#fff" opacity="0.11" />
+    <ellipse cx="160" cy="180" rx="2.4" ry="0.6" fill="#fff" opacity="0.13" />
+    <ellipse cx="160" cy="190" rx="2.1" ry="0.5" fill="#fff" opacity="0.08" />
+  </g>
+  <!-- Extra abstract tech details -->
+  <g>
+    <rect x="78" y="120" width="4" height="20" rx="2" fill="#ffe7a7" opacity="0.12" />
+    <rect x="238" y="120" width="4" height="20" rx="2" fill="#ffe7a7" opacity="0.12" />
+    <rect x="153" y="256" width="14" height="8" rx="3" fill="#ffe7a7" opacity="0.17" />
+    <ellipse cx="160" cy="260" rx="10" ry="2.5" fill="#b7e6f7" opacity="0.10" />
+    <ellipse cx="160" cy="272" rx="7" ry="2" fill="#b7e6f7" opacity="0.08" />
+    <ellipse cx="160" cy="278" rx="5" ry="1.5" fill="#b7e6f7" opacity="0.05" />
+  </g>
+  <!-- Jaw line -->
+  <path d="M120 210 Q160 250 200 210" stroke="#b7e6f7" stroke-width="3" fill="none" opacity="0.14" />
+  <!-- Subtle top face shadow -->
+  <ellipse cx="160" cy="90" rx="38" ry="10" fill="#232343" opacity="0.06" />
+</svg>
