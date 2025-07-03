@@ -51,7 +51,7 @@
           <circle cx="12" cy="12" r="11" stroke="#43d9ad" stroke-width="2" fill="#151c27" />
           <path d="M9 8l4 4-4 4" stroke="#43d9ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        Skip
+        skip
       </NuxtLink>
       <ChessGame />
 
@@ -402,18 +402,19 @@ onBeforeUnmount(() => {
 .skip-btn {
   padding: 10px 26px;
   border-radius: 9px;
-  font-weight: 600;
+  font-weight: 300;
   background: linear-gradient(90deg, #43d9ad 65%, #2196f3 100%);
   color: #fff;
   border: none;
   transition: background 0.17s, box-shadow 0.18s, color 0.13s;
-  box-shadow: 0 2px 10px #43d9ad55, 0 0 4px #2196f344;
-  font-size: 1.06rem;
+  box-shadow: 0 2px 7px #43d9ad55, 0 0 3px #2196f344;
+  font-size: 1rem;
   margin: 0 auto;
   cursor: pointer;
   letter-spacing: 0.5px;
   outline: none;
   gap: 0.5rem;
+  margin-top: 55px;
 }
 
 .skip-btn:hover,
@@ -422,5 +423,18 @@ onBeforeUnmount(() => {
   color: #ffe2b5;
   box-shadow: 0 4px 18px #2196f344;
   outline: none;
+}
+
+.skip-text {
+  display: block;
+  /* Biar bisa diatur margin atas */
+  margin-top: 16px;
+  /* Jarak dari atas, bisa diganti sesuai kebutuhan */
+  font-size: 0.8rem;
+  /* Ukuran lebih kecil, bisa diganti misal 12px */
+  color: inherit;
+  /* Warna mengikuti parent, bisa diganti */
+  text-align: center;
+  /* Tengah jika perlu */
 }
 </style>
