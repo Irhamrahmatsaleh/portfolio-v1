@@ -1,8 +1,16 @@
 <template>
   <div :class="['bubble-root', role === 'user' ? 'bubble-user' : 'bubble-bot']">
     <span class="bubble-avatar">
-      <span v-if="role === 'assistant'">🤖</span>
-      <span v-else>🧑</span>
+      <!-- <span v-if="role === 'assistant'" >🤖</span> -->
+      <!-- <span v-else>🧑</span> -->
+      <span v-if="role === 'assistant'">
+        <img src="/robot.png" alt="Robot" style="width: 37px; height: 37px; vertical-align: middle;" />
+      </span>
+
+      <span v-else>
+        <img src="/hacker.png" alt="Hacker" style="width: 35px; height: 35px; vertical-align: middle;" />
+      </span>
+
     </span>
     <span class="bubble-text" :class="{ 'bubble-typing': typing && role === 'assistant' }">
       <template v-if="role === 'assistant' && isMarkdown(finalContent) && !typing">
