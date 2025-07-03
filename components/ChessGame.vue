@@ -34,7 +34,7 @@
           </div>
           <div v-if="gameOver" class="game-over">
             <b>{{ winnerMsg }}</b>
-            <button @click="resetGame" class="reset-btn">Play Again</button>
+            <button @click="resetGameConfirm" class="reset-btn">Play Again</button>
           </div>
         </div>
         <div class="move-history">
@@ -342,7 +342,7 @@ function aiMove() {
 }
 
 // ===== LOGIKA LANGKAH BIDAK =====
-function getValidMoves(x, y, piece) {
+function getValidMoves(x, y, piece, boardState = board.value) {
   const moves = []
   const isWhite = piece === piece.toUpperCase()
   const directions = {
@@ -430,11 +430,12 @@ function getValidMoves(x, y, piece) {
   }
 
   const safeMoves = moves.filter(move => {
-    const tempBoard = JSON.parse(JSON.stringify(board.value));
-    tempBoard[move.y][move.x] = tempBoard[y][x];
-    tempBoard[y][x] = null;
-    return !isKingChecked(tempBoard, getPieceColor(piece));
-  });
+    const tempBoard = JSON.parse(JSON.stringify(boardState))
+    tempBoard[move.y][move.x] = boardState[y][x]
+    tempBoard[y][x] = null
+    return !isKingChecked(tempBoard, getPieceColor(piece))
+  })
+
   return safeMoves;
 }
 
@@ -510,7 +511,7 @@ function resetGameConfirm() {
 }
 
 // === 3. Animasi giliran & highlight langkah ===
-watch(turn, (newTurn, oldTurn) => {
+watch(turn, (newTurn) => {
   if (gameStarted.value && !gameOver.value) {
     showNotification(`${newTurn === 'w' ? "White's Turn" : "Black's Turn"}`)
   }
@@ -556,8 +557,8 @@ function isKingChecked(boardToCheck, color) {
   return false;
 }
 
-// Setelah setiap move, tambahkan:
-if (isKingChecked(turn.value)) {
+// Setelah setiap move, untuk cek apakah giliran baru menempatkan raja dalam posisi check
+if (isKingChecked(board.value, turn.value)) {
   showNotification('Check pada raja!')
 }
 
