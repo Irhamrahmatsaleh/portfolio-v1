@@ -34,7 +34,8 @@ export default defineNuxtConfig({
         {
           hid: 'og:url',
           property: 'og:url',
-          content: 'https://irhamrahmatsaleh.vercel.app/',
+          content:
+            'https://portfolio-v1-156ojr169-irham-salehs-projects.vercel.app/',
         },
         { name: 'theme-color', content: '#010C15' },
       ],

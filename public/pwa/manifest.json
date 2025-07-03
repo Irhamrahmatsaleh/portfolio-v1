@@ -2,12 +2,12 @@
   "name": "Portfolio for Developers Concept v2",
   "short_name": "Developer Portfolio",
   "description": "A awesome portfolio template for developers",
-  "start_url": "https://irhamrahmatsaleh.vercel.app/",
+  "start_url": "https://portfolio-v1-156ojr169-irham-salehs-projects.vercel.app/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#010C15",
   "theme_color": "#010C15",
-  "scope": "https://irhamrahmatsaleh.vercel.app/",
+  "scope": "https://portfolio-v1-156ojr169-irham-salehs-projects.vercel.app/",
   "icons": [
     {
       "src": "icons/icon48.png",
