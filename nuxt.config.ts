@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         {
           hid: 'og:url',
           property: 'og:url',
-          content: 'https://developer-portfolio-v1.netlify.app/',
+          content: 'https://irhamrahmatsaleh.vercel.app/',
         },
         { name: 'theme-color', content: '#010C15' },
       ],

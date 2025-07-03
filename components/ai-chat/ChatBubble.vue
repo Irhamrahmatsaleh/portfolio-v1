@@ -17,6 +17,7 @@
         <span v-else v-html="formatText(finalContent)"></span>
       </template>
     </span>
+    <span class="bubble-time">{{ props.time }}</span>
   </div>
 </template>
 
@@ -28,7 +29,8 @@ const props = defineProps({
   role: String,
   content: String,
   isIrham: Boolean,
-  typing: Boolean
+  typing: Boolean,
+  time: String
 })
 
 const displayedText = ref('')
@@ -538,6 +540,15 @@ onBeforeUnmount(() => {
   .bubble-avatar {
     font-size: 1.3rem;
   }
+}
+
+.bubble-time {
+  font-size: 0.75em;
+  color: #a0aec0;
+  align-self: flex-end;
+  margin-left: 8px;
+  margin-top: 4px;
+  min-width: 48px;
 }
 
 @media (max-width: 480px) {

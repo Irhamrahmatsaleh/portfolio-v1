@@ -13,7 +13,6 @@
       <div class="flex gap-3 items-center">
         <!-- Sound Toggle Component -->
         <SettingSoundToggle class="!p-2 !text-base" :model-value="soundOn" @update:sound="handleSoundUpdate" />
-        <!-- Future: Theme toggle, Language select, etc. -->
       </div>
     </header>
 
@@ -69,7 +68,6 @@
     </footer>
   </section>
 
-  <!-- SECTION: MODALS (placeholder, will be filled by script logic) -->
   <Teleport to="body">
     <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
       <div class="bg-[#111] border border-green-700 rounded-xl shadow-2xl p-8 min-w-[350px] max-w-md">

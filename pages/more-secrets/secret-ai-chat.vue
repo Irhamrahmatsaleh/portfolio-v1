@@ -35,7 +35,7 @@
     <div class="ai-chat-main">
       <div class="ai-chat-messages" ref="messagesContainer">
         <ChatBubble v-for="(msg, idx) in messages" :key="`msg-${idx}-${msg.timestamp}`" :role="msg.role"
-          :content="msg.content" :typing="msg.typing || false" :isIrham="msg.isIrham" />
+          :content="msg.content" :typing="msg.typing || false" :isIrham="msg.isIrham" :time="msg.time" />
       </div>
 
       <!-- Prompt + input center (desktop, belum ada chat) -->
@@ -109,7 +109,9 @@ const addMessage = (role, content, options = {}) => {
     content,
     timestamp: Date.now(),
     typing: options.typing || false,
-    isIrham: options.isIrham || false
+    isIrham: options.isIrham || false,
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+
   }
   messages.value.push(message)
   return message
