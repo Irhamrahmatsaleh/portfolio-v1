@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   // PORTFOLIO IRHAM: Data jawaban khusus jika pertanyaan tentang Irham
   const irhamPortfolio = `
-**Irham Rahmat Saleh**
+**Irham Rahmat Saleh**\n
 *Software Engineer | Full Stack Developer | AI Trainer*
 
 📧 **Email:** [irhamrahmatsaleh11@gmail.com](mailto:irhamrahmatsaleh11@gmail.com)
