@@ -14,13 +14,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
 
 const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  focusTrigger: {
+    type: Number, default: 0
   }
+})
+
+watch(() => props.focusTrigger, () => {
+  nextTick(() => {
+    if (inputBox.value && !props.disabled) inputBox.value.focus()
+  })
 })
 
 const input = ref('')
@@ -34,6 +43,9 @@ const onSend = () => {
   input.value = ''
   nextTick(() => {
     autoResize()
+    setTimeout(() => {
+      if (inputBox.value && !props.disabled) inputBox.value.focus()
+    }, 50)
   })
 }
 

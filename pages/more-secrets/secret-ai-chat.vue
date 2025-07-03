@@ -43,7 +43,7 @@
         <div class="ai-chat-ready-center">
           <div class="ready-title">Mau nanya apa?</div>
         </div>
-        <ChatInput :disabled="loading" @send="handleSend" />
+        <ChatInput :disabled="loading" :focus-trigger="focusTrigger" @send="handleSend" />
       </div>
 
       <!-- Prompt + input center (mobile, belum ada chat) -->
@@ -110,7 +110,7 @@ const addMessage = (role, content, options = {}) => {
     timestamp: Date.now(),
     typing: options.typing || false,
     isIrham: options.isIrham || false,
-    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    // time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 
   }
   messages.value.push(message)
@@ -124,6 +124,7 @@ const updateLastMessage = (updates) => {
     Object.assign(lastMessage, updates)
   }
 }
+const focusTrigger = ref(0)
 
 const handleSend = async (message) => {
   if (!message.trim()) return
@@ -181,6 +182,7 @@ const handleSend = async (message) => {
   } finally {
     loading.value = false
     scrollToBottom()
+    focusTrigger.value++
   }
 }
 </script>
