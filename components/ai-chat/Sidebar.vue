@@ -1,18 +1,13 @@
 <template>
   <aside :class="['sidebar', { collapsed }]">
-    <!-- Tombol toggle - HANYA TAMPIL SAAT BUKAN OVERLAY (desktop) -->
     <button v-if="!overlay" class="sidebar-toggle" @click="$emit('toggle')">
       <span class="toggle-icon" :class="{ rotated: !collapsed }">☰</span>
     </button>
-
-    <!-- Isi sidebar scrollable - HANYA TAMPIL SAAT TIDAK COLLAPSED -->
     <div class="sidebar-content" v-if="!collapsed">
-      <!-- Header ketika tidak collapsed -->
       <div class="sidebar-header">
         <h3 class="sidebar-title">Chat History</h3>
       </div>
 
-      <!-- Daftar chat/menu -->
       <div class="sidebar-items">
         <div v-for="item in 7" :key="item" class="sidebar-item">
           <!-- <div class="item-icon">💬</div> -->
@@ -21,7 +16,6 @@
       </div>
     </div>
 
-    <!-- Footer ketika tidak collapsed -->
     <div class="sidebar-footer" v-if="!collapsed">
       <div class="footer-item">
         <div class="item-icon">⚙️</div>
@@ -33,7 +27,6 @@
       </div>
     </div>
 
-    <!-- Footer collapsed - HANYA TAMPIL SAAT COLLAPSED DAN BUKAN OVERLAY -->
     <div class="sidebar-footer-collapsed" v-else-if="!overlay">
       <div class="footer-item-collapsed" title="Settings">⚙️</div>
       <div class="footer-item-collapsed" title="Profile">👤</div>
@@ -42,7 +35,6 @@
 </template>
 
 <script setup>
-// Ambil props collapsed dan overlay dari parent
 defineProps({
   collapsed: {
     type: Boolean,
@@ -54,7 +46,6 @@ defineProps({
   }
 })
 
-// Emit events ke parent
 defineEmits(['toggle', 'close'])
 </script>
 
@@ -118,7 +109,6 @@ defineEmits(['toggle', 'close'])
   display: flex;
   flex-direction: column;
   padding: 0;
-  /* Animasi smooth saat muncul/hilang */
   animation: fadeInContent 0.3s ease-in-out;
 }
 

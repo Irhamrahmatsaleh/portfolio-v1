@@ -1,11 +1,8 @@
-// server/api/groq.js
-
 export default defineEventHandler(async (event) => {
   const apiKey = process.env.NUXT_GROQ_API_KEY
   const body = await readBody(event)
   const messages = body?.messages || []
 
-  // PORTFOLIO IRHAM: Data jawaban khusus jika pertanyaan tentang Irham
   const irhamPortfolio = `
 **Irham Rahmat Saleh**\n
 *Software Engineer | Full Stack Developer | AI Trainer*
@@ -134,16 +131,13 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
 🔗 [LinkedIn](https://linkedin.com/in/irham-rahmat-saleh) | [GitHub](https://github.com/Irhamrahmatsaleh) | [Portfolio](https://irhamrahmatsaleh.github.io/irham/)
   `.trim()
 
-  // FUNGSI DETEKSI PERTANYAAN TENTANG IRHAM - LEBIH SPESIFIK
   function isAboutIrham(text) {
     if (!text || typeof text !== 'string') return false
 
     const lowerText = text.toLowerCase().trim()
 
-    // Skip jika terlalu pendek
     if (lowerText.length < 3) return false
 
-    // Daftar sapaan/ucapan biasa yang TIDAK boleh trigger portfolio
     const commonPhrases = [
       'hai',
       'halo',
@@ -181,7 +175,6 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
       'see you',
     ]
 
-    // Jika hanya sapaan biasa, jangan trigger portfolio
     if (
       commonPhrases.some(
         (phrase) =>
@@ -193,9 +186,7 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
       return false
     }
 
-    // Pattern yang BENAR-BENAR menanyakan tentang Irham
     const irhamPatterns = [
-      // Pertanyaan langsung tentang siapa Irham
       /\b(siapa|who\s+is)\s+(itu\s+)?irh?a?m/i,
       /\babout\s+irh?a?m/i,
       /\btentang\s+irh?a?m/i,
@@ -207,27 +198,22 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
       /\bportfolio\s+irh?a?m/i,
       /\bportofolio\s+irh?a?m/i,
 
-      // Nama lengkap
       /\birham\s+rahmat\s+saleh/i,
       /\birham\s+r\s+saleh/i,
       /\birham\s+saleh/i,
 
-      // Pertanyaan pengalaman/keahlian
       /\birh?a?m.*(pengalaman|experience|skill|keahlian|kerja|job)/i,
       /\b(pengalaman|experience|skill|keahlian|kerja|job).*irh?a?m/i,
 
-      // Kontak
       /\bkontak\s+irh?a?m/i,
       /\bcontact\s+irh?a?m/i,
       /\bhubungi\s+irh?a?m/i,
       /\bemail\s+irh?a?m/i,
       /\btelp?on\s+irh?a?m/i,
 
-      // Developer/programmer
       /\birh?a?m.*(developer|programmer|engineer)/i,
       /\b(developer|programmer|engineer).*irh?a?m/i,
 
-      // Ceritakan/jelaskan
       /\b(cerita|ceritakan|jelaskan|informasi|info).*irh?a?m/i,
       /\birh?a?m.*(cerita|ceritakan|jelaskan|informasi|info)/i,
     ]
@@ -236,7 +222,6 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
   }
 
   try {
-    // Ambil pesan user terakhir untuk dianalisis
     let lastUserMessage = ''
     for (let i = messages.length - 1; i >= 0; i--) {
       if (messages[i]?.role === 'user' && messages[i]?.content) {
@@ -245,16 +230,13 @@ Terbuka untuk peluang kolaborasi dan pertumbuhan karir di industri IT!
       }
     }
 
-    // Debug log (hapus di production)
     console.log('Last user message:', lastUserMessage)
     console.log('Is about Irham:', isAboutIrham(lastUserMessage))
 
-    // Jika pertanyaan tentang Irham, return portfolio
     if (isAboutIrham(lastUserMessage)) {
       return { reply: irhamPortfolio }
     }
 
-    // Jika bukan tentang Irham, lanjutkan ke Groq API
     if (!apiKey) {
       return { error: 'GROQ API key not configured' }
     }

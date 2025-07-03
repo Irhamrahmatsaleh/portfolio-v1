@@ -1,5 +1,4 @@
 <template>
-  <!-- SECTION: Root Hacker Terminal Page -->
   <section class="hacker-root-section bg-black h-screen flex flex-col items-center justify-center p-0 m-0"
     aria-label="Super Killer Hacker Terminal Root Section">
     <!-- SECTION: Title & Sound Control -->
@@ -18,14 +17,10 @@
       </div>
     </header>
 
-    <!-- SECTION: Main Terminal Area -->
     <main class="w-full max-w-5xl flex flex-col md:flex-row gap-4" aria-label="Main Hacker Terminal Area">
-      <!-- LEFT: TerminalWindow Component -->
       <div class="w-full md:w-8/12 flex flex-col">
         <TerminalWindow :sound-on="soundOn" @terminal-event="handleTerminalEvent" />
-        <!-- Future: Status Bar, Progress/Taskbar, Connection Indicator, etc. -->
         <div class="mt-3 flex gap-2 justify-end">
-          <!-- Placeholder for connection/status icons -->
           <span class="inline-block h-3 w-3 bg-green-500 rounded-full animate-pulse"></span>
           <span class="text-xs text-green-300">Online</span>
         </div>
@@ -52,6 +47,9 @@
             <li><a href="#" class="hover:underline">API</a></li>
             <li><a href="#" class="hover:underline">Support</a></li>
             <li>
+              <span class="note-yellow">
+                sudo google keyword
+              </span>
               <span class="note-red">
                 * Terminal ini hanya simulasi untuk edukasi.
               </span>
@@ -118,6 +116,14 @@ function handleTerminalEvent(type, payload) {
 <style>
 .note-red {
   color: #ff3b3b;
+  font-size: 0.92em;
+  font-weight: 600;
+  margin-top: 4px;
+  display: block;
+}
+
+.note-yellow {
+  color: #f1d537;
   font-size: 0.92em;
   font-weight: 600;
   margin-top: 4px;

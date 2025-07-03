@@ -1,21 +1,14 @@
-// server/api/google-search.js
-
-// Endpoint Google Search API untuk Nuxt 3 server API (super killer, anti error, scalable)
 export default defineEventHandler(async (event) => {
-  // Ambil parameter query dari URL (q, num, start)
   const { q, num = 10, start = 1 } = getQuery(event)
 
-  // Validasi query
   if (!q || typeof q !== 'string' || !q.trim()) {
     return { error: 'Query tidak boleh kosong', items: [] }
   }
 
-  // Ambil API key dari runtime config Nuxt (environment variable .env)
   const config = useRuntimeConfig()
   const GOOGLE_API_KEY = config.GOOGLE_API_KEY
   const GOOGLE_CX = config.GOOGLE_CX
 
-  // Validasi API key
   if (!GOOGLE_API_KEY || !GOOGLE_CX) {
     return {
       error: 'GOOGLE_API_KEY dan GOOGLE_CX harus diatur di file .env',
@@ -23,17 +16,14 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // Build URL endpoint Google Custom Search
   const url = `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CX}&q=${encodeURIComponent(
     q,
   )}&num=${num}&start=${start}`
 
   try {
-    // Fetch dari Google API
     const res = await fetch(url)
     const data = await res.json()
     if (data.error) throw new Error(data.error.message)
-    // Return hasil pencarian + info detail
     return {
       items: data.items || [],
       info: {
@@ -44,7 +34,6 @@ export default defineEventHandler(async (event) => {
       },
     }
   } catch (e) {
-    // Tangani error fetch
     return { error: e.message, items: [] }
   }
 })

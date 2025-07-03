@@ -1,6 +1,5 @@
 <template>
   <div class="ai-chat-app">
-    <!-- Hamburger hanya di mobile -->
     <button class="sidebar-hamburger" v-if="isMobile" @click="sidebarOpen = true" aria-label="Open sidebar">
       <svg width="30" height="30" viewBox="0 0 30 30">
         <rect y="6" width="30" height="3" rx="1.5" fill="#cdd6e7" />
@@ -9,11 +8,9 @@
       </svg>
     </button>
 
-    <!-- Sidebar overlay mobile -->
     <Sidebar v-if="isMobile && sidebarOpen" class="ai-chat-sidebar sidebar-overlay" :collapsed="sidebarCollapsed"
       :overlay="true" @toggle="sidebarCollapsed = !sidebarCollapsed" @close="sidebarOpen = false" />
 
-    <!-- Sidebar desktop -->
     <Sidebar v-else-if="!isMobile" class="ai-chat-sidebar" :collapsed="sidebarCollapsed" :overlay="false"
       @toggle="sidebarCollapsed = !sidebarCollapsed" />
 
@@ -23,7 +20,6 @@
           :content="msg.content" :typing="msg.typing || false" :isIrham="msg.isIrham" />
       </div>
 
-      <!-- Prompt + input center (desktop, belum ada chat) -->
       <div v-if="!isMobile && messages.length === 0" class="ai-chat-input-center">
         <div class="ai-chat-ready-center">
           <div class="ready-title">Mau nanya apa?</div>
@@ -31,7 +27,6 @@
         <ChatInput :disabled="loading" @send="handleSend" />
       </div>
 
-      <!-- Input bawah (mobile ATAU sudah ada chat) -->
       <div v-else class="ai-chat-input ai-chat-input-bottom">
         <ChatInput :disabled="loading" @send="handleSend" />
       </div>
@@ -62,7 +57,6 @@ onMounted(() => {
   window.addEventListener('resize', checkMobile)
 })
 
-// Fungsi untuk scroll ke bawah
 const scrollToBottom = async () => {
   await nextTick()
   if (messagesContainer.value) {
@@ -70,7 +64,6 @@ const scrollToBottom = async () => {
   }
 }
 
-// Fungsi untuk menambah pesan dengan timestamp unik
 const addMessage = (role, content, options = {}) => {
   const message = {
     role,
@@ -83,7 +76,6 @@ const addMessage = (role, content, options = {}) => {
   return message
 }
 
-// Fungsi untuk update pesan terakhir
 const updateLastMessage = (updates) => {
   if (messages.value.length > 0) {
     const lastMessage = messages.value[messages.value.length - 1]
@@ -94,14 +86,11 @@ const updateLastMessage = (updates) => {
 const handleSend = async (message) => {
   if (!message.trim()) return
 
-  // Tambah pesan user
   addMessage('user', message.trim())
   scrollToBottom()
 
-  // Set loading state
   loading.value = true
 
-  // Tambah pesan assistant dengan typing effect
   const assistantMessage = addMessage('assistant', '', { typing: true })
   scrollToBottom()
 
@@ -119,20 +108,17 @@ const handleSend = async (message) => {
     const data = await res.json()
 
     if (data.reply) {
-      // Update pesan assistant dengan konten dan mulai typing
       updateLastMessage({
         content: data.reply,
         typing: true
       })
 
-      // Tunggu sedikit untuk memulai typing effect
       setTimeout(() => {
         updateLastMessage({ typing: false })
         scrollToBottom()
       }, 100)
 
     } else {
-      // Jika tidak ada reply
       updateLastMessage({
         content: 'Maaf, tidak ada respons dari server.',
         typing: false
