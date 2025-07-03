@@ -16,7 +16,7 @@
       <div class="sidebar-items">
         <div v-for="item in 7" :key="item" class="sidebar-item">
           <!-- <div class="item-icon">💬</div> -->
-          <span class="item-text">Chat </span>
+          <span class="item-text"> </span>
         </div>
       </div>
     </div>
