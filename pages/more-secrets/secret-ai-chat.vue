@@ -41,7 +41,7 @@
       <!-- Prompt + input center (desktop, belum ada chat) -->
       <div v-if="!isMobile && messages.length === 0" class="ai-chat-input-center">
         <div class="ai-chat-ready-center">
-          <div class="ready-title">Mau nanya apa?</div>
+          <div class="ready-title">What do you want to ask?</div>
         </div>
         <ChatInput :disabled="loading" :focus-trigger="focusTrigger" @send="handleSend" />
       </div>
