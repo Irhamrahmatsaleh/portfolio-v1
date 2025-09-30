@@ -17,6 +17,7 @@ export default defineNuxtConfig({
       },
       title: siteTitle, // App window nav title
       meta: [
+        { name: "google-adsense-account", content: "ca-pub-6306356702727797" },
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
