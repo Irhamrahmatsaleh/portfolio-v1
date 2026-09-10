@@ -39,38 +39,37 @@ export default {
         const form = document.getElementById("contact-form");
         const button = document.getElementById("submit-button");
 
-        form.addEventListener("submit", async function(event) {
+        form.addEventListener("submit", function(event) {
             event.preventDefault();
-            if (!button) return;
-            button.textContent = "sending...";
-            button.disabled = true;
 
             const name = document.querySelector('input[name="name"]').value;
             const email = document.querySelector('input[name="email"]').value;
             const message = document.querySelector('textarea[name="message"]').value;
             const subject = `Contact from ${name}`;
 
-            try {
-                const res = await fetch("/api/contact", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, message, subject })
-                });
-                const data = await res.json().catch(() => ({}));
-
-                if (data.ok) {
-                    button.textContent = "sent ✓";
-                    form.reset();
-                } else {
-                    button.textContent = "failed ✗";
-                    button.disabled = false;
-                    alert(data.error || "Could not send message. Please try again.");
-                }
-            } catch (err) {
-                button.textContent = "failed ✗";
-                button.disabled = false;
-                alert("Network error: could not reach the server.");
+            if (!name || !email || !message) {
+                alert("Please fill in name, email, and message.");
+                return;
             }
+
+            const isConfirmed = confirm("Is your data correct?");
+            if (!isConfirmed) {
+                alert("Please correct your data.");
+                return;
+            }
+
+            const link = document.createElement("a");
+            link.href = "mailto:irhamrahmatsaleh904@gmail.com"
+                + "?subject=" + encodeURIComponent(subject)
+                + "&body=" + encodeURIComponent(
+                    "Hello, my name is " + name + ".%0D%0A%0D%0A"
+                    + "Email: " + email + "%0D%0A%0D%0A"
+                    + "Message:%0D%0A" + message
+                );
+            link.click();
+
+            alert("Your data has been submitted.");
+            form.reset();
         });
     }
 }
