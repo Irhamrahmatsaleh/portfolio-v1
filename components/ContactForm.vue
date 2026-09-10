@@ -59,13 +59,18 @@ export default {
             }
 
             const link = document.createElement("a");
-            link.href = "mailto:irhamrahmatsaleh904@gmail.com"
+            const mailtoBody = [
+                "Hello, my name is " + name + ".",
+                "",
+                "Email: " + email,
+                "",
+                "Message:",
+                message,
+            ].join("\n");
+
+            link.href = "mailto:irhamrs468@gmail.com"
                 + "?subject=" + encodeURIComponent(subject)
-                + "&body=" + encodeURIComponent(
-                    "Hello, my name is " + name + ".%0D%0A%0D%0A"
-                    + "Email: " + email + "%0D%0A%0D%0A"
-                    + "Message:%0D%0A" + message
-                );
+                + "&body=" + encodeURIComponent(mailtoBody);
             link.click();
 
             alert("Your data has been submitted.");
