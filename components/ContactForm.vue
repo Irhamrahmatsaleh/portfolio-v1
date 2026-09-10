@@ -36,14 +36,41 @@ export default {
         }
     },
     mounted() {
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
+        const form = document.getElementById("contact-form");
+        const button = document.getElementById("submit-button");
+
+        form.addEventListener("submit", async function(event) {
             event.preventDefault();
+            if (!button) return;
+            button.textContent = "sending...";
+            button.disabled = true;
+
             const name = document.querySelector('input[name="name"]').value;
             const email = document.querySelector('input[name="email"]').value;
             const message = document.querySelector('textarea[name="message"]').value;
-            
-            // Here the code to send the email
-            
+            const subject = `Contact from ${name}`;
+
+            try {
+                const res = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message, subject })
+                });
+                const data = await res.json().catch(() => ({}));
+
+                if (data.ok) {
+                    button.textContent = "sent ✓";
+                    form.reset();
+                } else {
+                    button.textContent = "failed ✗";
+                    button.disabled = false;
+                    alert(data.error || "Could not send message. Please try again.");
+                }
+            } catch (err) {
+                button.textContent = "failed ✗";
+                button.disabled = false;
+                alert("Network error: could not reach the server.");
+            }
         });
     }
 }
